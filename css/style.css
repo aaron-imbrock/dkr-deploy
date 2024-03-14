@@ -28,14 +28,14 @@ nav ul li a {
     color: #333;
 }
 
-aside {
+main {
     float: right;
-    width: 30%;
+    width: 60%;
 }
 
-main {
+aside {
     float: left;
-    width: 65%;
+    width: 35%;
 }
 
 pre {
@@ -46,4 +46,7 @@ pre {
 
 footer {
     clear: both;
+    bottom: 0;
+    position: fixed;    /* 'fixed' keeps the footer at the bottom of the page regardless of content length. Compare to 'relative' */
+    width: 100%;
 }
