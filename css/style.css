@@ -1,4 +1,7 @@
+html,
 body {
+    height: 100%;
+    margin: 0;
     font-family: Arial, sans-serif;
     line-height: 1.6;
     background-color: antiquewhite;
@@ -9,7 +12,7 @@ nav,
 main,
 aside,
 footer {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding: 20px;
     border: 1px solid #ccc;
 }
@@ -29,6 +32,7 @@ nav ul li a {
 }
 
 main {
+    flex: 1;
     float: right;
     width: 60%;
 }
@@ -47,6 +51,7 @@ pre {
 footer {
     clear: both;
     bottom: 0;
-    position: fixed;    /* 'fixed' keeps the footer at the bottom of the page regardless of content length. Compare to 'relative' */
+    /* 'fixed' keeps the footer at the bottom of the page regardless of content length. Compare to 'relative' */
+    position: fixed;
     width: 100%;
 }

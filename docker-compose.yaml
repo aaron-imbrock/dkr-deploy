@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .                  # Dir where Dockerfile and source code are located. It's the starting path.
+      dockerfile: app.Dockerfile  # The name of the Dockerfile to use. Otherwise assumed to be Dockerfile
+    ports:
+      - "80:80"
