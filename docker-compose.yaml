@@ -7,3 +7,10 @@ services:
       dockerfile: app.Dockerfile  # The name of the Dockerfile to use. Otherwise assumed to be Dockerfile
     ports:
       - "8080:80"
+
+deploy:
+    restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 120s
