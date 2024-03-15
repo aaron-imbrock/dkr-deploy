@@ -56,6 +56,8 @@ Using `-p 80:80` we specify the port of the host system on the left, and the ngi
 
 Port forwarding cannot be configured from a Dockerfile. The `EXPOSE` instruction doesn't actually publish the port. It functions as a type of documentation between the person who builds the image and the person who runs the container, about which ports are intended to be published. Your options are the `docker run` command, or `docker compose` which we'll cover next.
 
+## Confirm it works
+
 Using curl from the host, we can access nginx port 80 from within the container:
 
 ```linux
@@ -75,7 +77,7 @@ $ curl -v localhost:80
 ** some html
 ```
 
-Similarly from the browser at [http:\\\\localhost:80](http:\\localhost:80):
+Similarly from the browser at [http://localhost:80](http://localhost:80):
 
 <img src="./images/docker_view.png" alt="Example in Browser" style="width:80%;"/>
 
@@ -101,7 +103,7 @@ This is an example `docker-compose.yaml` file. We're not going to use it but it 
 At line 3 we define the services. This section is used to define the containers and their configurations that make up your application. In this case, there's a single service named web.
 
 * `web`: This is the name of the service, and it can be anything you choose. It's used to refer to this service in Docker Compose commands.
-  * `build: .`: This tells Docker Compose to build an image using the Dockerfile in the current directory (.), and which sets up a Python environment, installs dependencies from a requirements.txt file, and copies the current directory into the /code directory inside the container.
+  * `build: .`: This tells Docker Compose to build an image using the Dockerfile in the current directory (.)
   * `command`: Specifies the command to run inside the container. Here, it's running gunicorn.
 
 Here is ours. We run it with `docker compose up`.
@@ -118,3 +120,23 @@ services:
     ports:
       - "80:80"
 ```
+
+## Deploy Process
+
+So far we've covered dockerizing a project and shown how to run it locally. More than likally you want this pushed to a server and made accessible to the public.
+We could do that manually (but we won't) or we could create automation that would do this for us. GitHub Actions makes this easy.
+
+### Preparation
+
+You have to configure a couple things first. A $5USD virtual machine running on Digital Ocean will more than meet your needs and includes a free IPv4 address.
+
+### Step 0
+
+* Have a remote server ready and available.
+* Configure the DNS records of your domain to point to the IP of the server you just created.
+* Optional: Configure SSL Certificates
+* Optional: Configure a wildcard subdomain for your domain, so that you can have multiple subdomains for different services
+* Install and configure Docker on the remote server (Docker Engine, not Docker Desktop).
+
+### Install GitHub Actions Runner
+
